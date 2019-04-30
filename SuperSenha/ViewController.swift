@@ -21,6 +21,22 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let passwordsViewController = segue.destination as! PasswordsViewController
+        if let numberOfPasswords = Int(textFieldTotalPasswords.text!) {
+            passwordsViewController.numberOfPasswords = numberOfPasswords
+        }
+        
+        if let numberOfCharacters = Int(textFieldNumberOfCharacters.text!) {
+            passwordsViewController.numberOfCharacter = numberOfCharacters
+        }
+        
+        passwordsViewController.useLetters = switchLetters.isOn
+        passwordsViewController.useNumbers = switchNumbers.isOn
+        passwordsViewController.useCapitalLetters = switchCapitalLetters.isOn
+        passwordsViewController.useSpecialCharacters = switchSpecialCharacters.isOn
+        view.endEditing(true) //Remove o foco da view e fecha o teclado caso um textField esteja selecionado
+    }
+    
 }
 
